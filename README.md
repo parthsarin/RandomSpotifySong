@@ -8,7 +8,7 @@ In order to allow the program to authenticate with Spotify, you will need to ins
 pip install git+https://github.com/plamere/spotipy.git --upgrade
 ```
 
-You must also create a file called `keys.py` and store the following information in it:
+You must also create a file called `keys.py` and store the following information in it (you can generate this information from your [Spotify Dashboard](https://developer.spotify.com/dashboard/applications)):
 
 ```Python
 USERNAME = 'your-spotify-username'
