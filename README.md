@@ -11,7 +11,7 @@ pip install git+https://github.com/plamere/spotipy.git --upgrade
 You must also create a file called `keys.py` and store the following information in it:
 
 ```Python
-USERNAME = 'your-spotify-usernamd'
+USERNAME = 'your-spotify-username
 CLIENT_ID = 'spotify-client-id'
 CLIENT_SECRET = 'spotify-client-secret'
 ```
