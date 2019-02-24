@@ -69,7 +69,7 @@ class RandomPlayer:
 	def getRandomSong(self, verbose=False):
 		"""Returns a random song by searching for a random three
 		character string and picking a random song from the top
-		10 songs.
+		30 songs.
 
 		:verbose: Enables verbose mode.
 		"""
@@ -80,7 +80,7 @@ class RandomPlayer:
 			randSearchString = random.choice(alphabet) + random.choice(alphabet) + random.choice(alphabet)
 
 			if verbose: print("Retrieving songs for query '{}'...".format(randSearchString))
-			randSongs = self.sp.search(randSearchString, limit=10)
+			randSongs = self.sp.search(randSearchString, limit=30)
 			if verbose: print("Retrieved {} songs.".format(len(randSongs['tracks']['items'])))
 
 			if randSongs['tracks']['items']:

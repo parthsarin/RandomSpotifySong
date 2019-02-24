@@ -1,6 +1,6 @@
 # Random Spotify Song
 
-This project contains Python files that will play a random song from Spotify by looking up the top ten songs for a random three-letter string and picking one of them.
+This project contains Python files that will play a random song from Spotify by looking up the top thirty songs for a random three-letter string and picking one of them.
 
 In order to allow the program to authenticate with Spotify, you will need to install the `spotipy` module for Python. You can install the latest version with the command:
 
