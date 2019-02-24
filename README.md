@@ -24,7 +24,7 @@ The `RandomPlayer` class works is designed to work as per the following template
 player = RandomPlayer()
 player.authenticate()
 
-player.playRandomSong(numSongs = 10)
+player.playRandomSong(numSongs = 10) # Will throw an AuthenticationError if it isn't authenticated
 ```
 
 That code would start playback of 10 random songs on Spotify.
