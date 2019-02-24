@@ -19,7 +19,7 @@ class RandomPlayer:
 		self.authenticated = False
 
 	def authenticate(self, verbose = False):
-		"""Authenticates with the Spotify API by prompting the user for 
+		"""Authenticates with the Spotify API by prompting the user for
 		information that we need.
 
 		:verbose: Enables verbose mode.
@@ -85,7 +85,7 @@ class RandomPlayer:
 
 			if randSongs['tracks']['items']:
 				output = random.choice(randSongs['tracks']['items'])
-				if verbose: 
+				if verbose:
 					artists = [ artist['name'] for artist in output['artists'] ]
 					print("There are valid songs. Choosing {} by {}.".format(output['name'], ', '.join(artists)))
 				return output
@@ -98,6 +98,12 @@ if __name__ == '__main__':
 	else:
 		verbose = False
 
+	if '--numSongs' in sys.argv:
+		index = sys.argv.index('--numSongs')
+		numSongs = int(sys.argv[index+1])
+	else:
+		numSongs = 10
+
 	player = RandomPlayer()
 	player.authenticate(verbose=verbose)
-	player.playRandomSong(numSongs=10, verbose=verbose)
+	player.playRandomSong(numSongs=numSongs, verbose=verbose)
