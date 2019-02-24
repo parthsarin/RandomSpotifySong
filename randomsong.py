@@ -98,8 +98,8 @@ if __name__ == '__main__':
 	else:
 		verbose = False
 
-	if '--numSongs' in sys.argv:
-		index = sys.argv.index('--numSongs')
+	if '--num-songs' in sys.argv:
+		index = sys.argv.index('--num-songs')
 		numSongs = int(sys.argv[index+1])
 	else:
 		numSongs = 10

@@ -31,5 +31,5 @@ That code would start playback of 10 random songs on Spotify.
 
 You can also do the same thing by executing the following command:
 ```
-python randomsong.py --numSongs 10
+python randomsong.py --num-songs 10
 ```
