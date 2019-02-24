@@ -2,7 +2,13 @@
 
 This project contains Python files that will play a random song from Spotify by looking up the top ten songs for a random three-letter string and picking one of them.
 
-In order to allow the program to authenticate with Spotify, create a file called `keys.py` and store the following information in it:
+In order to allow the program to authenticate with Spotify, you will need to install the `spotipy` module for Python. You can install the latest version with the command:
+
+```
+pip install git+https://github.com/plamere/spotipy.git --upgrade
+```
+
+You must also create a file called `keys.py` and store the following information in it:
 
 ```Python
 USERNAME = 'your-spotify-usernamd'
