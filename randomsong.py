@@ -6,18 +6,35 @@ Plays random songs on Spotify.
 import random # for choosing random songs
 import sys # for verbose mode
 import string # for random queries
+import pickle # for storing the username
+import pathlib # for storing the username
 from errors import AuthenticationError
 
 ### Spotify-specific ###
 import spotipy # Spotify API
 import spotipy.util as util # for authorized requests
-import keys # unique information about the account to link to
 
 class RandomPlayer:
 	def __init__(self):
 		self.AUTH_SCOPE = 'user-read-currently-playing user-modify-playback-state user-read-playback-state streaming'
 		self.REDIRECT_URI = 'http://localhost/randomsong/authenticate'
+		self.CLIENT_ID = 'f2063b1303a240e5a5a1757ab364332e'
+		self.CLIENT_SECRET = 'ef9b4fccdeb34f67b703febcf1670d1b'
 		self.authenticated = False
+
+	def _getUsername(self):
+		"""Gets the Spotify username for the user and stores
+		it as a cached file.
+		"""
+		usernameFile = pathlib.Path(".cache-username")
+		if usernameFile.is_file():
+			with usernameFile.open('rb') as f:
+				return pickle.load(f)
+		else:
+			username = input("Spotify username? ")
+			with usernameFile.open('wb') as f:
+				pickle.dump(username, f)
+			return username
 
 	def authenticate(self, verbose = False):
 		"""Authenticates with the Spotify API by prompting the user for
@@ -26,25 +43,20 @@ class RandomPlayer:
 		:verbose: Enables verbose mode.
 		:returns: The authentication token, if it was successful.
 		"""
-		# Prompt for the username if we don't already have it.
-		if not keys.USERNAME:
-			username = input("Spotify username? ")
-		else:
-			username = keys.USERNAME
+		# Get the username
+		self.username = self._getUsername()
 
 		# Authenticate with the web API if it's not already provided.
-		if keys.CLIENT_ID:
-			token = util.prompt_for_user_token(username, self.AUTH_SCOPE, client_id = keys.CLIENT_ID, client_secret = keys.CLIENT_SECRET, redirect_uri = self.REDIRECT_URI)
-		else:
-			token = util.prompt_for_user_token(username, self.AUTH_SCOPE, redirect_uri = self.REDIRECT_URI)
+		token = util.prompt_for_user_token(self.username, self.AUTH_SCOPE, client_id = self.CLIENT_ID, client_secret = self.CLIENT_SECRET, redirect_uri = self.REDIRECT_URI)
 
 		if token:
 			if verbose: print("Authenticated successfully.")
+
 			self.token = token
 			self.sp = spotipy.Spotify(auth=token)
 			self.authenticated = True
+
 		else:
-			if verbose: print("Authentication unsuccessful.")
 			raise AuthenticationError("Authentication unsuccessful")
 
 	def checkAuthentication(self):

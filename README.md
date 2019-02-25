@@ -8,15 +8,7 @@ In order to allow the program to authenticate with Spotify, you will need to ins
 pip install git+https://github.com/plamere/spotipy.git --upgrade
 ```
 
-You must also create a file called `keys.py` and store the following information in it (you can generate this information from your [Spotify Dashboard](https://developer.spotify.com/dashboard/applications)):
-
-```Python
-USERNAME = 'your-spotify-username'
-CLIENT_ID = 'spotify-client-id'
-CLIENT_SECRET = 'spotify-client-secret'
-```
-
-The first time you execute the program, it should redirect you to a web browser and authenticate with Spotify and then ask you to paste the url you are redirected to into the terminal. This authenticates the program with Spotify.
+The first time you instantiate `RandomPlayer`, it will prompt you for your username (and store that value locally) and then it should redirect you to a web browser and authenticate with Spotify. Once authenticated, you will be redirected to a `localhost` address that will probably not load. You should paste the url you are redirected to into the terminal. This authenticates the program with Spotify.
 
 The `RandomPlayer` class works is designed to work as per the following template:
 
