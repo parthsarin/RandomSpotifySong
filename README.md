@@ -1,6 +1,6 @@
 # Random Spotify Song
 
-This project contains Python files that will play a random song from Spotify by looking up the top thirty songs for a random three-letter string and picking one of them.
+This project contains Python files that will play a random song from Spotify by looking up the top thirty songs for a random three-letter string or commonly used word and picking one of them.
 
 In order to allow the program to authenticate with Spotify, you will need to install the `spotipy` module for Python. You can install the latest version with the command:
 
@@ -13,7 +13,7 @@ The first time you instantiate `RandomPlayer`, it will prompt you for your usern
 The `RandomPlayer` class works is designed to work as per the following template:
 
 ```Python
-player = RandomPlayer()
+player = RandomPlayer(random_song_schema='word') # random_song_schema is either 'word' or 'char' depending on how you want to generate random songs (see above)
 player.authenticate()
 
 player.playRandomSong(numSongs = 10) # Will throw an AuthenticationError if player isn't authenticated
@@ -25,3 +25,5 @@ You can also do the same thing by executing the following command:
 ```
 python randomsong.py --num-songs 10
 ```
+
+By default, the random song schema is to search the Spotify database for the most commonly used *words*.
