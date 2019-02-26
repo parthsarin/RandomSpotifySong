@@ -27,3 +27,9 @@ python randomsong.py --num-songs 10
 ```
 
 By default, the random song schema is to search the Spotify database for the most commonly used *words*.
+
+## So... why?
+
+I feel like sometimes we get trapped in routines that are very similar. We take the same routes every day, consume the same kind of media every day, etc. Music is one of those routines: people don't really get exposed to new kinds of music very frequently. Spotify recommends music based on a user's past listening history, so it's difficult to discover *truly* new kinds of music with Spotify's default tools and auto-generatred playlists. 
+
+A Google search for "random Spotify song" will reveal that I'm not the first person to think of this. There are other websites and apps that try to do the same thing but none of the other services I found were really random. Most were just curated playlists which were very diverse in genre. This tool incorporates several layers of randomness to try to get as close to random songs as possible.
