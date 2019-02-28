@@ -27,7 +27,7 @@ class RandomPlayer:
 		self.REDIRECT_URI = 'http://localhost/randomsong/authenticate'
 		self.CLIENT_ID = 'f2063b1303a240e5a5a1757ab364332e'
 		self.CLIENT_SECRET = 'ef9b4fccdeb34f67b703febcf1670d1b'
-		
+
 		self.random_song_schema = random_song_schema
 		self.authenticated = False
 
@@ -90,9 +90,23 @@ class RandomPlayer:
 			raise AttributeError("random_song_schema must be either 'word' or 'char'.")
 
 		uris = [ song['uri'] for song in songs ]
-		self.sp.start_playback(uris = uris)
+		device_id = self._checkActiveDevices()
+		print("Started playback...")
+		self.sp.start_playback(device_id = device_id, uris = uris)
 
-		if verbose: print("Started playback...")
+	def _checkActiveDevices(self):
+		"""Checks to see if there are active devices which the Spotify
+		API can bind to and waits until the user provides one to return.
+		"""
+		self.checkAuthentication()
+
+		while True:
+			activeDevices = self.sp.devices()['devices']
+			if activeDevices:
+				return activeDevices[0]['id']
+
+			print("There are no active devices available. The script can only execute once you open Spotify on a device.")
+			input("Press 'Enter' to check for active devices again. ")
 
 	def getRandomSongFromWord(self, verbose=False):
 		"""Returns a random song by searching for a random word
