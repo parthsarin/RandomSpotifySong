@@ -9,6 +9,7 @@ import string # for random queries
 import pickle # for storing the username
 import pathlib # for storing the username
 from errors import AuthenticationError
+import os
 
 ### Spotify-specific ###
 import spotipy # Spotify API
@@ -164,6 +165,8 @@ class RandomPlayer:
 				print("There are no valid songs. Trying again.")
 
 if __name__ == '__main__':
+	
+	os.system("cls")
 
 	print("--- This is a program to play random songs from spotify. Read README.md for more information ---")
 	numSongs = int(input("Number of songs to play: "))
@@ -173,7 +176,7 @@ if __name__ == '__main__':
 	elif schema_input == "N":
 		schema = "word"
 	else:
-		print("You didn't type Y or N, using 'word' schema...")
+		print("You didn't type Y or N, using 'word' schema by default...")
 		schema = "word"
 
 	player = RandomPlayer(random_song_schema=schema)
