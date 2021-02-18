@@ -165,7 +165,7 @@ class RandomPlayer:
 
 if __name__ == '__main__':
 
-	print("--- This is a program to play random songs from spotify. Read the file README.md for more information ---")
+	print("--- This is a program to play random songs from spotify. Read README.md for more information ---")
 	numSongs = int(input("Number of songs to play: "))
 	schema_input = input("Use 'char' schema instead of 'word'? (Y/N): ")
 	if schema_input == "Y":
