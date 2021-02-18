@@ -179,3 +179,5 @@ if __name__ == '__main__':
 	player = RandomPlayer(random_song_schema=schema)
 	player.authenticate(verbose=True)
 	player.playRandomSong(numSongs=numSongs, verbose=True)
+
+	input("Press enter to exit")
