@@ -164,17 +164,18 @@ class RandomPlayer:
 				print("There are no valid songs. Trying again.")
 
 if __name__ == '__main__':
-	if '-v' in sys.argv:
-		verbose = True
-	else:
-		verbose = False
 
-	if '--num-songs' in sys.argv:
-		index = sys.argv.index('--num-songs')
-		numSongs = int(sys.argv[index+1])
+	print("--- This is a program to play random songs from spotify. Read the file README.md for more information ---")
+	numSongs = int(input("Number of songs to play: "))
+	schema_input = input("Use 'char' schema instead of 'word'? (Y/N): ")
+	if schema_input == "Y":
+		schema = "char"
+	elif schema_input == "N":
+		schema = "word"
 	else:
-		numSongs = 10
+		print("You didn't type Y or N, using 'word' schema...")
+		schema = "word"
 
-	player = RandomPlayer(random_song_schema='word')
-	player.authenticate(verbose=verbose)
-	player.playRandomSong(numSongs=numSongs, verbose=verbose)
+	player = RandomPlayer(random_song_schema=schema)
+	player.authenticate(verbose=True)
+	player.playRandomSong(numSongs=numSongs, verbose=True)
