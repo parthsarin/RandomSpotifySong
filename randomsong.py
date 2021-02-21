@@ -15,6 +15,7 @@ import os
 import spotipy # Spotify API
 import spotipy.util as util # for authorized requests
 
+
 class RandomPlayer:
 	def __init__(self, random_song_schema='word'):
 		"""Creates an instance of the RandomPlayer class.
@@ -164,23 +165,48 @@ class RandomPlayer:
 			elif verbose:
 				print("There are no valid songs. Trying again.")
 
-if __name__ == '__main__':
-	
-	os.system("cls")
 
+def screen_clear():
+	# for mac and linux(here, os.name is 'posix')
+	if os.name == 'posix':
+		_ = os.system('clear')
+	else:
+		# for windows platfrom
+		_ = os.system('cls')
+	return
+
+
+if __name__ == '__main__':
+	screen_clear()
 	print("--- This is a program to play random songs from spotify. Read README.md for more information ---")
-	numSongs = int(input("Number of songs to play: "))
-	schema_input = input("Use 'char' schema instead of 'word'? (Y/N): ")
-	if schema_input == "Y":
+
+	if '--num-songs' in sys.argv:
+		index = sys.argv.index('--num-songs')
+		numSongs = int(sys.argv[index+1])
+	else:
+		numSongs = int(input("Number of songs to play: "))
+
+	if '-char' in sys.argv:
 		schema = "char"
-	elif schema_input == "N":
+	elif "-word" in sys.argv:
 		schema = "word"
 	else:
-		print("You didn't type Y or N, using 'word' schema by default...")
-		schema = "word"
+		schema_input = input("Use 'char' schema instead of 'word'? (Y/N): ")
+		if schema_input == "Y":
+			schema = "char"
+		elif schema_input == "N":
+			schema = "word"
+		else:
+			print("You didn't type Y or N, using 'word' schema by default...")
+			schema = "word"
+
+	if "-q" in sys.argv:
+		verbose = False
+	else:
+		verbose = True
 
 	player = RandomPlayer(random_song_schema=schema)
-	player.authenticate(verbose=True)
-	player.playRandomSong(numSongs=numSongs, verbose=True)
+	player.authenticate(verbose=verbose)
+	player.playRandomSong(numSongs=numSongs, verbose=verbose)
 
 	input("Press enter to exit")
