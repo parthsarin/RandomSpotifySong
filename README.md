@@ -12,14 +12,14 @@ To run the program, double click on `RandomSpotifySong.bat`. You can also follow
 
 In order to allow the program to authenticate with Spotify, you will need to install the `spotipy` module for Python. You can install the latest version with the command:
 
-pip install git+https://github.com/plamere/spotipy.git --upgrade
+`pip install git+https://github.com/plamere/spotipy.git --upgrade`
 
 After this has been done, you can now run `randomsong.py` to use the program.
 
 ## Running from command line:
 
 The program can also be run with the command line like this: `python randomsong.py --num-songs 10 -word`.
-Replace `-word` with `-char` to use the char schema
+Replace `-word` with `-char` to use the char schema.
 You can also include `-q` to stop program output.
 
 ## Authenticating with spotify:
