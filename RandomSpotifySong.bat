@@ -1,0 +1,1 @@
+@echo off && echo Loading... && python -m venv .env && cd .env/Scripts && activate && cd .. && cd .. && pip install spotipy --quiet --quiet && python randomsong.py
